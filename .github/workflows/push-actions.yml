@@ -1,0 +1,17 @@
+name: Create Zip-File
+run-name: ${{ github.actor }} is creating a Zip-File 🚀
+on: [push]
+jobs: 
+  Checkout-And-Create-Zip-File:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Create Zip-File
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tile-Locked
+          path: |
+            data/
+            pack.mcmeta
+            pack.png
