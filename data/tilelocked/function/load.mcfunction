@@ -23,5 +23,5 @@ scoreboard objectives setdisplay sidebar TileLockedData
 scoreboard objectives add TileLockedSettings trigger
 
 # Force players to spawn around a single block to prevent spawning outside an unlocked tile
-gamerule spawnRadius 0
-gamerule keepInventory true
+gamerule minecraft:respawn_radius 0
+gamerule minecraft:keep_inventory true
