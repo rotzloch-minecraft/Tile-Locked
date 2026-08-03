@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Tile Locked is a **Minecraft data pack** (not a compiled/scripted program) for Java Edition, `pack_format` 101 (Minecraft 26.1.2). All logic lives in `.mcfunction` files under `data/tilelocked/function/`, driven by vanilla `minecraft:load`/`minecraft:tick` function tags. There is no build step, package manager, or test runner — "code" is Minecraft commands.
+Tile Locked is a **Minecraft data pack** (not a compiled/scripted program) for Java Edition, `pack_format` 107.1 (Minecraft 26.2). All logic lives in `.mcfunction` files under `data/tilelocked/function/`, driven by vanilla `minecraft:load`/`minecraft:tick` function tags. There is no build step, package manager, or test runner — "code" is Minecraft commands.
 
 ## Workflow (build/test/deploy)
 
-- **No compiler/linter/tests exist.** The only correctness check is loading the pack in an actual Minecraft 26.1.2 client/server and observing behavior.
+- **No compiler/linter/tests exist.** The only correctness check is loading the pack in an actual Minecraft 26.2 client/server and observing behavior.
 - To test locally: copy or symlink this repo's contents into a world's `datapacks/<name>/` folder, then run `/reload` in-game after making changes.
 - Useful in-game debug commands while iterating:
   - `/reload` — reload the data pack after editing `.mcfunction` files.
@@ -54,7 +54,7 @@ Several `.mcfunction` files (`check_add_tile.mcfunction`, `check_add_tile_xz.mcf
 `TileLockedSettings` is a `trigger`-type objective. The client runs `/trigger TileLockedSettings set <code>` (via clickable `tellraw` buttons); `tick_player.mcfunction` matches on `scores={TileLockedSettings=<code>}` to apply the change, then resets the trigger and re-renders the tellraw menu. Codes are grouped by range: `10-12` difficulty, `20-21` unlock sound, `100-116` tile color. Buttons use the modern raw-JSON text component keys `click_event`/`hover_event` (snake_case, not the pre-1.21.5 `clickEvent`/`hoverEvent`); `hover_event`'s `show_text` action takes a `value` field, not `contents`. Keep using this schema for any new menu rows.
 
 ### Pack format / pack.mcmeta
-`pack.mcmeta` uses `min_format`/`max_format` (both `101`, i.e. major 101 with any minor) as the primary compatibility declaration — since data pack format 88.0 (1.21.9+), a bare `pack_format` integer is no longer sufficient on its own for a modern-only pack, though it's kept here too for graceful degradation/warnings on older clients. Bump `min_format`/`max_format` together when targeting a new major data pack format.
+`pack.mcmeta` uses `min_format`/`max_format` (both `[107, 1]`, i.e. major 107, minor 1) as the primary compatibility declaration — since data pack format 88.0 (1.21.9+), a bare `pack_format` integer is no longer sufficient on its own for a modern-only pack, though it's kept here too (as `107`, the major-only value) for graceful degradation/warnings on older clients. Bump `min_format`/`max_format` together when targeting a new major/minor data pack format; `min_format`/`max_format` accept either a bare integer (major only, minor implied `0`) or a `[major, minor]` array.
 
 ### Versioning/migration
 `#version` on the `TileLockedData` objective stores a zero-padded version integer (e.g. `1.0.5` → `10050`) for **this data pack's own release**, unrelated to Minecraft's `pack_format`. `check_version.mcfunction` re-runs `load` if the stored version is older than the current pack's expected value, giving existing worlds a migration path when upgrading the data pack (e.g. re-applying renamed gamerules). Bump this number (and the matching checks in `pre_tick.mcfunction`/`check_version.mcfunction`) whenever `load.mcfunction`'s effects change in a way existing worlds need re-applied.
