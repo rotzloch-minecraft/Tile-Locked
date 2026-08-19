@@ -1,6 +1,6 @@
 # Check we are up to date
-execute unless score #version TileLockedData matches 10050.. run function tilelocked:check_version
-execute unless score #version TileLockedData matches 10050.. run scoreboard players set #version TileLockedData 10050
+execute unless score #version TileLockedData matches 10060.. run function tilelocked:check_version
+execute unless score #version TileLockedData matches 10060.. run scoreboard players set #version TileLockedData 10060
 
 # Add to our tick counts
 scoreboard players add #ticks TileLockedData 1

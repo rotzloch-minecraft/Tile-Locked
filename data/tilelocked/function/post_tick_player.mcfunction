@@ -17,4 +17,6 @@ execute if score #ticks TileLockedData matches 10.. at @s run function tilelocke
 
 # Clean up
 tag @s remove currentPlayer
-tag @e[tag=markerNeedsInit] remove markerNeedsInit
+# Scoped to near the player - markerNeedsInit is only ever set on a marker just summoned at
+# the player's own position a few lines above, so a world-wide scan here is unnecessary
+execute at @s run tag @e[tag=markerNeedsInit,distance=..10] remove markerNeedsInit
