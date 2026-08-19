@@ -1,4 +1,4 @@
-execute if score #debug TileLockedData matches 1 run tellraw @a ["",{"text":"[TileLocked DEBUG] check_remove_tile for ","color":"aqua"},{"selector":"@s"}]
+execute if score #debug TileLockedData matches 1 run say [TileLocked DEBUG] check_remove_tile for @s
 
 #Remove if tile not on block or is under a block
 execute as @e[type=block_display,tag=tilelocked,distance=..10] at @s unless block ~ ~ ~ #tilelocked:opaque run kill @s

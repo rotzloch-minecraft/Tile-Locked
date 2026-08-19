@@ -1,4 +1,4 @@
-execute if score #debug TileLockedData matches 1 run tellraw @a ["",{"text":"[TileLocked DEBUG] init_first_tiles starting for ","color":"aqua"},{"selector":"@a[tag=currentPlayer,limit=1]"}]
+execute if score #debug TileLockedData matches 1 run say [TileLocked DEBUG] init_first_tiles starting for @a[tag=currentPlayer,limit=1]
 
 # We summon a tile marker at the current location and then process the unlocked tiles
 execute as @s[tag=currentPlayer] align xyz positioned ~1.5 ~ ~1.5 run summon minecraft:marker ~ ~ ~ {Tags: [tilelocked, tileMarker, unlocked]}

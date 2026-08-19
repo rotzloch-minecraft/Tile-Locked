@@ -18,6 +18,9 @@ execute unless score #ticks TileLockedData matches 0.. run scoreboard players se
 execute unless score #tileColor TileLockedData matches 0.. run scoreboard players set #tileColor TileLockedData 9
 execute unless score #version TileLockedData matches 0.. run scoreboard players set #version TileLockedData 1
 execute unless score #debug TileLockedData matches 0.. run scoreboard players set #debug TileLockedData 0
+# TEMP DEBUG: forces debug logging on for every world load, so it's active before you even log in.
+# Remove this line once done diagnosing.
+scoreboard players set #debug TileLockedData 1
 scoreboard objectives setdisplay sidebar TileLockedData
 
 # Scoreboard for trigger commands

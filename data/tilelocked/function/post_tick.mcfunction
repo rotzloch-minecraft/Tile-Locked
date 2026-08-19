@@ -18,7 +18,7 @@ kill @e[type=marker,tag=tilelocked,tag=player2d]
 # had to walk every tilelocked block_display in the whole dimension every tick and could
 # freeze the server, especially right after login when render distance loads many tiles
 # at once. See #debug logging below for diagnosing tick-time issues.
-execute if score #ticks TileLockedData matches 10.. if score #debug TileLockedData matches 1 run tellraw @a ["",{"text":"[TileLocked DEBUG] check_color pass, Unlocked=","color":"aqua"},{"score":{"name":"Unlocked","objective":"TileLockedData"}}]
+execute if score #ticks TileLockedData matches 10.. if score #debug TileLockedData matches 1 run say [TileLocked DEBUG] check_color pass
 execute if score #ticks TileLockedData matches 10.. as @a[gamemode=!spectator] at @s if score #tileColor TileLockedData matches 0 as @e[type=block_display,tag=tilelocked,tag=!color0,distance=..48] run function tilelocked:tile_init/check_color
 execute if score #ticks TileLockedData matches 10.. as @a[gamemode=!spectator] at @s if score #tileColor TileLockedData matches 1 as @e[type=block_display,tag=tilelocked,tag=!color1,distance=..48] run function tilelocked:tile_init/check_color
 execute if score #ticks TileLockedData matches 10.. as @a[gamemode=!spectator] at @s if score #tileColor TileLockedData matches 2 as @e[type=block_display,tag=tilelocked,tag=!color2,distance=..48] run function tilelocked:tile_init/check_color

@@ -10,7 +10,7 @@
 
 # Add tiles if missing from blocks
 
-execute if score #debug TileLockedData matches 1 run tellraw @a ["",{"text":"[TileLocked DEBUG] check_add_tile grid scan for ","color":"aqua"},{"selector":"@s"}]
+execute if score #debug TileLockedData matches 1 run say [TileLocked DEBUG] check_add_tile grid scan for @s
 
 # Check if this x/z axis is unlocked, if so, check the tiles are displayed correctly
 execute align xyz positioned ~5.5 64 ~5.5 if entity @e[tag=tilelocked,tag=unlocked,distance=..0.1] positioned as @s align xyz positioned ~5.5 ~ ~5.5 run function tilelocked:tile_init/check_add_tile_xz

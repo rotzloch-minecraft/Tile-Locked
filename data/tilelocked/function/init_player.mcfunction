@@ -9,4 +9,4 @@ scoreboard players enable @s TileLockedSettings
 
 tag @s add playerInitTileLocked
 
-execute if score #debug TileLockedData matches 1 run tellraw @s ["",{"text":"[TileLocked DEBUG] init_player finished for ","color":"aqua"},{"selector":"@s"}]
+execute if score #debug TileLockedData matches 1 run say [TileLocked DEBUG] init_player finished for @s
