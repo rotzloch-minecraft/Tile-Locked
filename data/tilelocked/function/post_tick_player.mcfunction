@@ -12,8 +12,8 @@ execute store result score @e[tag=prevPosMarker,tag=markerNeedsInit,limit=1] Uui
 execute store result score @e[tag=prevPosMarker,tag=markerNeedsInit,limit=1] Uuid4 run data get entity @s UUID[3]
 
 # Check if we need to add or remove tiles around the player
-execute if score #ticks TileLockedData matches 10.. at @s run function tilelocked:tile_init/check_remove_tile
-execute if score #ticks TileLockedData matches 10.. at @s run function tilelocked:tile_init/check_add_tile
+execute if score #ticks TileLockedData matches 40.. at @s run function tilelocked:tile_init/check_remove_tile
+execute if score #ticks TileLockedData matches 40.. at @s run function tilelocked:tile_init/check_add_tile
 
 # Clean up
 tag @s remove currentPlayer
